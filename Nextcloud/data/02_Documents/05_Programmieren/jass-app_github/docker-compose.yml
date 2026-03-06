@@ -1,0 +1,13 @@
+services:
+  schieber:
+    build: .
+    container_name: schieber-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - JWT_SECRET=CHANGE_THIS_IN_PRODUCTION
+      - DB_FILE=/app/data/app.json
+    volumes:
+      - ./data:/app/data

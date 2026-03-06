@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schieber Online</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="kicker">Self-hosted Jass</p>
+        <h1>Schieber Online</h1>
+      </header>
+
+      <section id="authPanel" class="panel">
+        <h2>Anmeldung</h2>
+        <p id="authMessage" class="auth-message"></p>
+        <p class="auth-note">Benutzername: 3-24 Zeichen, Passwort: mindestens 4 Zeichen.</p>
+        <div class="auth-grid">
+          <form id="loginForm" class="auth-box">
+            <h3>Login</h3>
+            <label>
+              Benutzername
+              <input type="text" id="loginUsername" autocomplete="username" required />
+            </label>
+            <label>
+              Passwort
+              <input type="password" id="loginPassword" autocomplete="current-password" required />
+            </label>
+            <button type="submit">Einloggen</button>
+          </form>
+
+          <form id="registerForm" class="auth-box">
+            <h3>Registrieren</h3>
+            <label>
+              Benutzername
+              <input type="text" id="registerUsername" autocomplete="username" required />
+            </label>
+            <label>
+              Passwort
+              <input type="password" id="registerPassword" autocomplete="new-password" required />
+            </label>
+            <button type="submit">Konto erstellen</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="appPanel" class="hidden">
+        <section class="panel topbar">
+          <div>
+            <strong id="userLabel">-</strong>
+            <span class="mono">&nbsp;|&nbsp;Status: <span id="connectionStatus">getrennt</span></span>
+          </div>
+          <div class="toolbar">
+            <button id="logoutBtn" class="danger">Logout</button>
+          </div>
+        </section>
+
+        <section class="panel status-row">
+          <span id="statusMessage" class="status-message"></span>
+        </section>
+
+        <section id="dashboardScreen" class="panel screen">
+          <div class="screen-header">
+            <h2>Dashboard</h2>
+            <button id="createRoomBtn">Neuen Tisch erstellen</button>
+          </div>
+          <p class="screen-note">Waehl einen aktiven Tisch aus. Sitze siehst du erst in der Tischansicht.</p>
+          <div id="activeRooms" class="active-rooms"></div>
+        </section>
+
+        <section id="tableScreen" class="hidden screen">
+          <section class="panel">
+            <div class="screen-header">
+              <h2>Tisch <span id="roomCode">-</span></h2>
+              <div class="toolbar">
+                <button id="backToDashboardBtn">Zurueck zum Dashboard</button>
+                <button id="startGameBtn">Runde starten</button>
+                <button id="nextRoundBtn">Naechste Runde</button>
+                <button id="resetMatchBtn" class="danger">Match reset</button>
+              </div>
+            </div>
+
+            <div id="scoreBoard" class="score-board"></div>
+            <div id="gameInfo" class="info-box"></div>
+            <div id="modeButtons" class="mode-grid"></div>
+
+            <div class="table-felt top-gap">
+              <div id="tableSeats" class="table-seats"></div>
+              <div id="trickLayer" class="trick-layer"></div>
+              <div id="trickFlash" class="trick-flash hidden"></div>
+            </div>
+          </section>
+
+          <section class="panel top-gap">
+            <h3>Deine Hand</h3>
+            <div id="hand" class="hand-grid"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
